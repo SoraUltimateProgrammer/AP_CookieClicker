@@ -13,6 +13,9 @@ class CCItem(Item):
 # Yes I know 4206900 was a much funnier offset
 class OFFSET():
     BUILDINGS = 10000000
+    SPIRITS = 11000000
+    SEEDS = 12000000
+    SPELLS = 13000000
     UPGRADES = 20000000
     PROGRESSIVE = 21000000
     FILLERS = 50000000
@@ -527,19 +530,33 @@ cookie_multiplier = [
     ItemData(OFFSET.FILLERS + 1, "Random Cookie Multiplier 999x", ItemClassification.filler),
     ItemData(OFFSET.FILLERS + 2, "Random Cookie Multiplier 9999x", ItemClassification.filler),
     ItemData(OFFSET.FILLERS + 3, "Random Cookie Multiplier 9999999x", ItemClassification.filler),
-    # ItemData(OFFSET.FILLERS + 4, "Random Cookie Multiplier 0.5x", ItemClassification.filler),
     ItemData(OFFSET.FILLERS + 5, "Random Cookie Multiplier 10x", ItemClassification.filler),
-    # ItemData(42069649, "No Cookies for U", ItemClassification.filler)
+
+    ItemData(OFFSET.FILLERS + 6, "+3 Lumps", ItemClassification.filler),
+    ItemData(OFFSET.FILLERS + 7, "+5 Lumps", ItemClassification.filler),
+    ItemData(OFFSET.FILLERS + 8, "+10 Lumps", ItemClassification.filler),
+    
+    ItemData(OFFSET.FILLERS + 9, "Cookie Storm", ItemClassification.filler),
+    ItemData(OFFSET.FILLERS + 10, "Elder Frenzy", ItemClassification.filler),
+    ItemData(OFFSET.FILLERS + 11, "Cursed Finger", ItemClassification.filler),
+    ItemData(OFFSET.FILLERS + 12, "Everything Must Go!", ItemClassification.filler),
+    ItemData(OFFSET.FILLERS + 13, "Sugar Blessing", ItemClassification.filler),
 ]
 
 cookie_multiplier_weights = {
-    "Random Cookie Multiplier 2x": 50,
-    "Random Cookie Multiplier 10x": 10,
-    "Random Cookie Multiplier 999x": 25,
-    "Random Cookie Multiplier 9999x": 10,
-    "Random Cookie Multiplier 9999999x": 5,
-    # "Random Cookie Multiplier 0.5x": 10,
-    # "No Cookies for U": 50
+    "Random Cookie Multiplier 2x": 10,
+    "Random Cookie Multiplier 10x": 5,
+    "Random Cookie Multiplier 999x": 5,
+    "Random Cookie Multiplier 9999x": 4,
+    "Random Cookie Multiplier 9999999x": 1,
+    "+3 Lumps": 10,
+    "+5 Lumps": 10,
+    "+10 Lumps": 5,
+    "Cookie Storm": 10,
+    "Elder Frenzy": 10,
+    "Cursed Finger": 10,
+    "Everything Must Go!": 10,
+    "Sugar Blessing": 10,
 }
 
 # Traps start ID 60000000
@@ -556,7 +573,24 @@ traps = [
     ItemData(OFFSET.TRAPS + 9, "-70% Cookies", ItemClassification.trap),
     ItemData(OFFSET.TRAPS + 10, "-80% Cookies", ItemClassification.trap),
     ItemData(OFFSET.TRAPS + 11, "-90% Cookies", ItemClassification.trap),
-    ItemData(OFFSET.TRAPS + 12, "-100% Cookies", ItemClassification.trap)
+    ItemData(OFFSET.TRAPS + 12, "-100% Cookies", ItemClassification.trap),
+
+    ItemData(OFFSET.TRAPS + 14, "-1 Lump", ItemClassification.trap),
+    ItemData(OFFSET.TRAPS + 15, "-2 Lumps", ItemClassification.trap),
+    ItemData(OFFSET.TRAPS + 16, "-3 Lumps", ItemClassification.trap),
+    
+    ItemData(OFFSET.TRAPS + 17, "Clot Debuff", ItemClassification.trap),
+    ItemData(OFFSET.TRAPS + 18, "Reversed Frenzy", ItemClassification.trap),
+    ItemData(OFFSET.TRAPS + 19, "Pixie's Curse", ItemClassification.trap),
+
+    ItemData(OFFSET.TRAPS + 20, "Remove Buffs", ItemClassification.trap),
+    
+    ItemData(OFFSET.TRAPS + 21, "Minigame Destruction", ItemClassification.trap),
+    
+    ItemData(OFFSET.TRAPS + 22, "Heart Of The Mountain", ItemClassification.trap),
+    
+    ItemData(OFFSET.TRAPS + 23, "Zooooom", ItemClassification.trap),
+    ItemData(OFFSET.TRAPS + 24, "Color By Numbers", ItemClassification.trap),
 ]
 
 # Structures start ID 00000000. Grandmas are unlocked by default
@@ -604,6 +638,72 @@ progressive_structures = [
     ItemData(OFFSET.BUILDINGS + 17, "Progressive Idleverse", ItemClassification.progression),
     ItemData(OFFSET.BUILDINGS + 18, "Progressive Cortex Baker", ItemClassification.progression),
     ItemData(OFFSET.BUILDINGS + 19, "Progressive You", ItemClassification.progression)
+]
+
+
+progressive_spirits = [
+    ItemData(OFFSET.SPIRITS + 0, "Progressive Holobore", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 1, "Progressive Vomitrax", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 2, "Progressive Godzamok", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 3, "Progressive Cyclius", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 4, "Progressive Selebrak", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 5, "Progressive Dotjeiess", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 6, "Progressive Skruuia", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 7, "Progressive Muridal", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 8, "Progressive Mokalsium", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 9, "Progressive Jeremy", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 10, "Progressive Rigidel", ItemClassification.progression),
+]
+
+
+progressive_spells = [
+    ItemData(OFFSET.SPIRITS + 0, "Progressive Conjure Baked Goods", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 1, "Progressive Force the Hand of Fate", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 2, "Progressive Stretch Time", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 3, "Progressive Spontaneous Edifice", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 4, "Progressive Haggler's Charm", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 5, "Progressive Summon Crafty Pixies", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 6, "Progressive Gambler's Fever Dream", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 7, "Progressive Resurrect Abomination", ItemClassification.progression),
+    ItemData(OFFSET.SPIRITS + 8, "Progressive Diminish Ineptitude", ItemClassification.progression),
+]
+
+progressive_spells = [
+    ItemData(OFFSET.SEEDS + 0, "Progressive Baker's Wheat", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 1, "Progressive Thumbcorn", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 2, "Progressive Cronerice", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 3, "Progressive Gildmillet", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 4, "Progressive Ordinary Clover", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 5, "Progressive Golden Clover", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 6, "Progressive Shimmerlily", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 7, "Progressive Elderwort", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 8, "Progressive Bakeberry", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 9, "Progressive Chocoroot", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 10, "Progressive White Chocoroot", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 11, "Progressive White Mildew", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 12, "Progressive Brown Mold", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 13, "Progressive Meddleweed", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 14, "Progressive Whiskerbloom", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 15, "Progressive Chimerose", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 16, "Progressive Nursetulip", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 17, "Progressive Drowsyfern", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 18, "Progressive Wardlichen", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 19, "Progressive Keenmoss", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 20, "Progressive Queenbeet", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 21, "Progressive Juicy Queenbeet", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 22, "Progressive Duketater", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 23, "Progressive Crumbspore", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 24, "Progressive Doughshroom", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 25, "Progressive Glovemorel", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 26, "Progressive Cheapcap", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 27, "Progressive Fool's Bolete", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 28, "Progressive Wrinklegill", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 29, "Progressive Green Rot", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 30, "Progressive Shriekbulb", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 31, "Progressive Tidygrass", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 32, "Progressive Everdaisy", ItemClassification.progression),
+    ItemData(OFFSET.SEEDS + 33, "Progressive Ichorpuff", ItemClassification.progression),
+    
 ]
 
 progressive_heavens = ItemData(OFFSET.PROGRESSIVE + 0, "Heavenly progress", ItemClassification.progression)
