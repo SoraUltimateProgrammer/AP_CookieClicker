@@ -7,11 +7,12 @@ class CCLocation(Location):
 class CCAchievement:
     OFFSET = 42069000 + 1 # TODO remove +1 offset to prevent errors
 
-    def __init__(self, id, name, building, sphere):
+    def __init__(self, id, name, building, sphere, check_type=0):
         self.id = self.OFFSET + id
         self.name = name
         self.building = BUILDING(building).value
         self.sphere = SPHERE(sphere).value
+        self.check_type = check_type
 
 class SPHERE(Enum):
     EXCLUDED = -1
@@ -28,6 +29,11 @@ class SPHERE(Enum):
     # Special sphere
     ENDGAME = 10 # A bit different from progression because we need specifically everything
     GRANDMA = 66
+
+class CHECK_TYPE(Enum):
+    BUILDING = 0
+    SPELL = 1
+    PLANT = 2
 
 class BUILDING(Enum):
     NOTHING = -1
@@ -51,6 +57,54 @@ class BUILDING(Enum):
     IDLEVERSE = 17
     CORTEX_BAKER = 18
     YOU = 19
+
+
+class SPELLS(Enum):
+    CONJURE = 1
+    FORCE = 2
+    STRETCH = 3
+    EDIFICE = 4
+    HAGGLER = 5
+    PIXIES = 6
+    GAMBLER = 7
+    RESURRECT = 8
+    DIMINISH = 9
+
+class PLANTS(Enum):
+    BAKERS_WHEAT = 1
+    THUMBCORN = 2
+    CRONERICE = 3
+    GILDMILLET = 4
+    ORDINARY_CLOVER = 5
+    GOLDEN_CLOVER = 6
+    SHIMMERLILY = 7
+    ELDERWORT = 8
+    BAKEBERRY = 9
+    CHOCOROOT = 10
+    WHITE_CHOCOROOT = 11
+    WHITE_MILDEW = 12
+    BROWN_MOLD = 13
+    MEDDLEWEED = 14
+    WHISKERBLOOM = 15
+    CHIMEROSE = 16
+    NURSETULIP = 17
+    DROWSYFERN = 18
+    WARDLICHEN = 19
+    KEENMOSS = 20
+    QUEENBEET = 21
+    JUICY_QUEENBEET = 22
+    DUKETATER = 23
+    CRUMBSPORE = 24
+    DOUGHSHROOM = 25
+    GLOVEMOREL = 26
+    CHEAPCAP = 27
+    FOOLS_BOLETE = 28
+    WRINKLEGILL = 29
+    GREEN_ROT = 30
+    SHRIEKBULB = 31
+    TIDYGRASS = 32
+    EVERDAISY = 33
+    ICHORPUFF = 34
 
 achievements = [
     # Total baked
@@ -716,20 +770,148 @@ achievements = [
     CCAchievement(639, "Cookie Clicker", 19, 5),
 ]
 
+spell_achievements = [
+    CCAchievement(5000, "First Success: Conjure Baked Goods", 1, 0, 1);
+    CCAchievement(5001, "First Backfire: Conjure Baked Goods", 1, 0, 1);
+    CCAchievement(5002, "First Success: Force the Hand of Fate", 2, 0, 1);
+    CCAchievement(5003, "First Backfire: Force the Hand of Fate", 2, 0, 1);
+    CCAchievement(5004, "First Success: Stretch Time", 3, 0, 1);
+    CCAchievement(5005, "First Backfire: Stretch Time", 3, 0, 1);
+    CCAchievement(5006, "First Success: Spontaneous Edifice", 4, 0, 1);
+    CCAchievement(5007, "First Backfire: Spontaneous Edifice", 4, 0, 1);
+    CCAchievement(5008, "First Success: Haggler's Charm", 5, 0, 1);
+    CCAchievement(5009, "First Backfire: Haggler's Charm", 5, 0, 1);
+    CCAchievement(5010, "First Success: Summon Crafty Pixies", 6, 0, 1);
+    CCAchievement(5011, "First Backfire: Summon Crafty Pixies", 6, 0, 1);
+    CCAchievement(5012, "First Success: Gambler's Fever Dream", 7, 0, 1);
+    CCAchievement(5013, "First Backfire: Gambler's Fever Dream", 7, 0, 1);
+    CCAchievement(5014, "First Success: Resurrect Abomination", 8, 0, 1);
+    CCAchievement(5015, "First Backfire: Resurrect Abomination", 8, 0, 1);
+    CCAchievement(5016, "First Success: Diminish Ineptitude", 9, 0, 1);
+    CCAchievement(5017, "First Backfire: Diminish Ineptitude", 9, 0, 1);
+]
+
+plant_achievements = [
+    CCAchievement(5018, "First Plant: Baker's Wheat", 1, 0, 2);
+    CCAchievement(5019, "First Harvest: Baker's Wheat", 1, 0, 2);
+    CCAchievement(5020, "First Plant: Thumbcorn", 2, 0, 2);
+    CCAchievement(5021, "First Harvest: Thumbcorn", 2, 0, 2);
+    CCAchievement(5022, "First Plant: Cronerice", 3, 0, 2);
+    CCAchievement(5023, "First Harvest: Cronerice", 3, 0, 2);
+    CCAchievement(5024, "First Plant: Gildmillet", 4, 0, 2);
+    CCAchievement(5025, "First Harvest: Gildmillet", 4, 0, 2);
+    CCAchievement(5026, "First Plant: Ordinary Clover", 5, 0, 2);
+    CCAchievement(5027, "First Harvest: Ordinary Clover", 5, 0, 2);
+    CCAchievement(5028, "First Plant: Golden Clover", 6, 3, 2);
+    CCAchievement(5029, "First Harvest: Golden Clover", 6, 3, 2);
+    CCAchievement(5030, "First Plant: Shimmerlily", 7, 1, 2);
+    CCAchievement(5031, "First Harvest: Shimmerlily", 7, 1, 2);
+    CCAchievement(5032, "First Plant: Elderwort", 8, 2, 2);
+    CCAchievement(5033, "First Harvest: Elderwort", 8, 2, 2);
+    CCAchievement(5034, "First Plant: Bakeberry", 9, 2, 2);
+    CCAchievement(5035, "First Harvest: Bakeberry", 9, 2, 2);
+    CCAchievement(5036, "First Plant: Chocoroot", 10, 1, 2);
+    CCAchievement(5037, "First Harvest: Chocoroot", 10, 1, 2);
+    CCAchievement(5038, "First Plant: White Chocoroot", 11, 1, 2);
+    CCAchievement(5039, "First Harvest: White Chocoroot", 11, 1, 2);
+    CCAchievement(5040, "First Plant: White Mildew", 12, 0, 2);
+    CCAchievement(5041, "First Harvest: White Mildew", 12, 0, 2);
+    CCAchievement(5042, "First Plant: Brown Mold", 13, 0, 2);
+    CCAchievement(5043, "First Harvest: Brown Mold", 13, 0, 2);
+    CCAchievement(5044, "First Plant: Meddleweed", 14, 0, 2);
+    CCAchievement(5045, "First Harvest: Meddleweed", 14, 0, 2);
+    CCAchievement(5046, "First Plant: Whiskerbloom", 15, 2, 2);
+    CCAchievement(5047, "First Harvest: Whiskerbloom", 15, 2, 2);
+    CCAchievement(5048, "First Plant: Chimerose", 16, 1, 2);
+    CCAchievement(5049, "First Harvest: Chimerose", 16, 1, 2);
+    CCAchievement(5050, "First Plant: Nursetulip", 17, 2, 2);
+    CCAchievement(5051, "First Harvest: Nursetulip", 17, 2, 2);
+    CCAchievement(5052, "First Plant: Drowsyfern", 18, 1, 2);
+    CCAchievement(5053, "First Harvest: Drowsyfern", 18, 1, 2);
+    CCAchievement(5054, "First Plant: Wardlichen", 19, 0, 2);
+    CCAchievement(5055, "First Harvest: Wardlichen", 19, 0, 2);
+    CCAchievement(5056, "First Plant: Keenmoss", 20, 2, 2);
+    CCAchievement(5057, "First Harvest: Keenmoss", 20, 2, 2);
+    CCAchievement(5058, "First Plant: Queenbeet", 21, 2, 2);
+    CCAchievement(5059, "First Harvest: Queenbeet", 21, 2, 2);
+    CCAchievement(5060, "First Plant: Juicy Queenbeet", 22, 4, 2);
+    CCAchievement(5061, "First Harvest: Juicy Queenbeet", 22, 4, 2);
+    CCAchievement(5062, "First Plant: Duketater", 23, 3, 2);
+    CCAchievement(5063, "First Harvest: Duketater", 23, 3, 2);
+    CCAchievement(5064, "First Plant: Crumbspore", 24, 0, 2);
+    CCAchievement(5065, "First Harvest: Crumbspore", 24, 0, 2);
+    CCAchievement(5066, "First Plant: Doughshroom", 25, 2, 2);
+    CCAchievement(5067, "First Harvest: Doughshroom", 25, 2, 2);
+    CCAchievement(5068, "First Plant: Glovemorel", 26, 0, 2);
+    CCAchievement(5069, "First Harvest: Glovemorel", 26, 0, 2);
+    CCAchievement(5070, "First Plant: Cheapcap", 27, 1, 2);
+    CCAchievement(5071, "First Harvest: Cheapcap", 27, 1, 2);
+    CCAchievement(5072, "First Plant: Fool's Bolete", 28, 0, 2);
+    CCAchievement(5073, "First Harvest: Fool's Bolete", 28, 0, 2);
+    CCAchievement(5074, "First Plant: Wrinklegill", 29, 2, 2);
+    CCAchievement(5075, "First Harvest: Wrinklegill", 29, 2, 2);
+    CCAchievement(5076, "First Plant: Green Rot", 30, 2, 2);
+    CCAchievement(5077, "First Harvest: Green Rot", 30, 2, 2);
+    CCAchievement(5078, "First Plant: Shriekbulb", 31, 3, 2);
+    CCAchievement(5079, "First Harvest: Shriekbulb", 31, 3, 2);
+    CCAchievement(5080, "First Plant: Tidygrass", 32, 3, 2);
+    CCAchievement(5081, "First Harvest: Tidygrass", 32, 3, 2);
+    CCAchievement(5082, "First Plant: Everdaisy", 33, 4, 2);
+    CCAchievement(5083, "First Harvest: Everdaisy", 33, 4, 2);
+    CCAchievement(5084, "First Plant: Ichorpuff", 34, 2, 2);
+    CCAchievement(5085, "First Harvest: Ichorpuff", 34, 2, 2);
+]
+
 victory_achievement = CCAchievement(0, "Victory Location", -1, -1)
 victory_achievement.id = 42000000
 victory_achievement.sphere = 42000000
 achievements += [victory_achievement]
+achievements += spell_achievements
+achievements += plant_achievements
 
 valid_locations = list(filter(lambda achv: achv.sphere != SPHERE.EXCLUDED.value, achievements))
 
 locations = {
     'all': achievements,
     'valid': valid_locations,
-    'by_building': { building: list(filter( lambda achv: achv.building == building.value, valid_locations )) for building in BUILDING },
-    'by_sphere': { sphere: list(filter( lambda achv: achv.sphere == sphere.value, valid_locations )) for sphere in SPHERE },
 
-    'name_to_id': { f"{location.name}": location.id for location in achievements },
-    'id_to_name': { location.id: location.name for location in achievements },
+    'by_building': {
+        building: [
+            achv for achv in valid_locations
+            if achv.building == building.value and achv.check_type == CHECK_TYPE.BUILDING.value
+        ]
+        for building in BUILDING
+    },
+
+    'by_spell': {
+        spell: [
+            achv for achv in valid_locations
+            if achv.building == spell.value and achv.check_type == CHECK_TYPE.SPELL.value
+        ]
+        for spell in SPELLS
+    },
+
+    'by_plant': {
+        plant: [
+            achv for achv in valid_locations
+            if achv.building == plant.value and achv.check_type == CHECK_TYPE.PLANT.value
+        ]
+        for plant in PLANTS
+    },
+    
+    'by_sphere': {
+        sphere: [
+            achv for achv in valid_locations
+            if achv.sphere == sphere.value
+        ]
+        for sphere in SPHERE
+    },
+
+    'name_to_id': {
+        location.name: location.id for location in achievements
+    },
+
+    'id_to_name': {
+        location.id: location.name for location in achievements
+    },
 }
-
