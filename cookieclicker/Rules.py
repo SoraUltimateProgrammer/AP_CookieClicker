@@ -2,7 +2,8 @@ from enum import Enum
 
 from worlds.generic.Rules import forbid_item
 from rule_builder.rules import (Has, HasAny, HasAll, True_)
-from .Locations import (SPHERE, BUILDING, locations)
+from .Locations import (SPHERE, BUILDING, CHECK_TYPE, SPELLS, PLANTS, locations)
+
 
 
 class BUILDING_NAME(Enum):
@@ -35,7 +36,75 @@ class BUILDING_NAME(Enum):
 
     def progressive_item(self):
         return "Progressive " + self.value
+        
+class SPELL_NAME(Enum):
+    CONJURE = "Conjure Baked Goods"
+    FORCE = "Force the Hand of Fate"
+    STRETCH = "Stretch Time"
+    EDIFICE = "Spontaneous Edifice"
+    HAGGLER = "Haggler's Charm"
+    PIXIES = "Summon Crafty Pixies"
+    GAMBLER = "Gambler's Fever Dream"
+    RESURRECT = "Resurrect Abomination"
+    DIMINISH = "Diminish Ineptitude"
 
+    def unlock_item(self):
+        return "Unlock " + self.value
+
+    def progressive_item(self):
+        return "Progressive " + self.value
+        
+class PLANT_NAME(Enum):
+    BAKERS_WHEAT = "Baker's Wheat"
+    THUMBCORN = "Thumbcorn"
+    CRONERICE = "Cronerice"
+    GILDMILLET = "Gildmillet"
+    ORDINARY_CLOVER = "Ordinary Clover"
+    GOLDEN_CLOVER = "Golden Clover"
+    SHIMMERLILY = "Shimmerlily"
+    ELDERWORT = "Elderwort"
+    BAKEBERRY = "Bakeberry"
+    CHOCOROOT = "Chocoroot"
+    WHITE_CHOCOROOT = "White Chocoroot"
+    WHITE_MILDEW = "White Mildew"
+    BROWN_MOLD = "Brown Mold"
+    MEDDLEWEED = "Meddleweed"
+    WHISKERBLOOM = "Whiskerbloom"
+    CHIMEROSE = "Chimerose"
+    NURSETULIP = "Nursetulip"
+    DROWSYFERN = "Drowsyfern"
+    WARDLICHEN = "Wardlichen"
+    KEENMOSS = "Keenmoss"
+    QUEENBEET = "Queenbeet"
+    JUICY_QUEENBEET = "Juicy Queenbeet"
+    DUKETATER = "Duketater"
+    CRUMBSPORE = "Crumbspore"
+    DOUGHSHROOM = "Doughshroom"
+    GLOVEMOREL = "Glovemorel"
+    CHEAPCAP = "Cheapcap"
+    FOOLS_BOLETE = "Fool's Bolete"
+    WRINKLEGILL = "Wrinklegill"
+    GREEN_ROT = "Green Rot"
+    SHRIEKBULB = "Shriekbulb"
+    TIDYGRASS = "Tidygrass"
+    EVERDAISY = "Everdaisy"
+    ICHORPUFF = "Ichorpuff"
+
+    def unlock_item(self):
+        return "Unlock " + self.value
+
+    def progressive_item(self):
+        return "Progressive " + self.value
+        
+SPELL_GATE = HasAny(
+    BUILDING_NAME.WIZARD_TOWER.unlock_item(),
+    BUILDING_NAME.WIZARD_TOWER.progressive_item()
+)
+
+PLANT_GATE = HasAny(
+    BUILDING_NAME.FARM.unlock_item(),
+    BUILDING_NAME.FARM.progressive_item()
+)
 
 def set_rules(self: "CookieClicker"):
     world = self.multiworld
@@ -47,6 +116,20 @@ def set_rules(self: "CookieClicker"):
             cclocation = world.get_location(location.name, player)
             forbid_item(cclocation, building.unlock_item(), player)
             forbid_item(cclocation, building.progressive_item(), player)
+
+        # handle spell and plant logic
+        for achv in locations['valid']:
+        loc = world.get_location(achv.name, player)
+
+        if achv.check_type == CHECK_TYPE.SPELL.value:
+            loc.access_rule = SPELL_GATE & Has(
+                SPELL_NAME(SPELLS(achv.building)).progressive_item()
+            )
+
+        elif achv.check_type == CHECK_TYPE.PLANT.value:
+            loc.access_rule = PLANT_GATE & Has(
+                PLANT_NAME(PLANTS(achv.building)).progressive_item()
+            )
 
     # 2) Make the “sphere 0” achievements always available
     # 3) Rough sphere implementation. Don't ask how it's balanced
