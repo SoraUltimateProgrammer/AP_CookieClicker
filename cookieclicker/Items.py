@@ -668,7 +668,7 @@ progressive_spells = [
     ItemData(OFFSET.SPIRITS + 8, "Progressive Diminish Ineptitude", ItemClassification.progression),
 ]
 
-progressive_spells = [
+progressive_plants = [
     ItemData(OFFSET.SEEDS + 0, "Progressive Baker's Wheat", ItemClassification.progression),
     ItemData(OFFSET.SEEDS + 1, "Progressive Thumbcorn", ItemClassification.progression),
     ItemData(OFFSET.SEEDS + 2, "Progressive Cronerice", ItemClassification.progression),
@@ -716,6 +716,9 @@ item_list += can_become_progressive
 item_list += cookie_multiplier
 item_list += traps
 item_list += structures
+item_list += progressive_spirits
+item_list += progressive_spells
+item_list += progressive_plants
 item_list += [progressive_heavens]
 item_list += [victory]
 
